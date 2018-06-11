@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
  
 Vagrant.configure("2") do |config|
-    config.vm.box = "Centos/7"
+    config.vm.box = "centos/7"
  
     config.vm.define :jenkins do |jenkins_config|
         jenkins_config.vm.hostname = 'jenkins'
