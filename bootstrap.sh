@@ -60,9 +60,9 @@ echo $JAVA_HOME
 # JENKINS #########################################################################
 echo -e "-- Including Jenkins packages\n"
 sudo yum install epel-release
-sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
-sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
-yum install jenkins -y -qq
+sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+sudo rpm --import http://pkg.jenkins-ci.org/redhat-stable/jenkins-ci.org.key
+sudo yum install jenkins
  
 echo -e "-- Updating packages list\n"
 yum update -y -qq
