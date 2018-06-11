@@ -49,18 +49,30 @@ service httpd restart
  
 # JAVA #########################################################################
 echo -e "-- Installing JAVA packages\n"
-yum install -y openjdk-8-jre > /dev/null 2>&1
-yum install -y openjdk-8-jdk > /dev/null 2>&1
+yum install java-1.8.0-openjdk.x86_64 > /dev/null 2>&1
+version=$(java -version)
+sudo cp /etc/profile /etc/profile_backup
+echo 'export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk' | sudo tee -a /etc/profile
+echo 'export JRE_HOME=/usr/lib/jvm/jre' | sudo tee -a /etc/profile
+source /etc/profile
+echo $JAVA_HOME
  
 # JENKINS #########################################################################
 echo -e "-- Including Jenkins packages\n"
-wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | apt-key add - > /dev/null 2>&1
-sh -c "echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list"
+sudo yum install epel-release
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+yum install jenkins -y -qq
  
 echo -e "-- Updating packages list\n"
 yum update -y -qq
 echo -e "-- Installing Jenkins automation server\n"
 yum install jenkins -y -qq
+# NGINX ############################################################################
+echo -e "--Installing NGINX Web Server\n"
+sudo yum install nginx -y -qq
+sudo vi /etc/nginx/nginx.conf
+
  
 # END ##########################################################################
 echo -e "-- ---------------- --"
