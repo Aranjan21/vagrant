@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
     config.vm.box = "centos/7"
  
     config.vm.define :jenkins do |jenkins_config|
-        jenkins_config.vm.hostname = 'jenkins'
+        jenkins_config.vm.hostname = 'Jenkins'
         jenkins_config.vm.network "private_network", ip: "192.168.33.11"
     end
  

@@ -13,7 +13,7 @@ DOCUMENT_ROOT=/var/www/html
  
 # BOX ##########################################################################
 echo -e "-- Updating packages list\n"
-yum update -y -qq
+yum update -y 
  
 # APACHE #######################################################################
 echo -e "-- Installing Apache web server\n"
@@ -60,17 +60,15 @@ echo $JAVA_HOME
 # JENKINS #########################################################################
 echo -e "-- Including Jenkins packages\n"
 sudo yum install epel-release
+sudo yum install wget -y
 sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
 sudo rpm --import http://pkg.jenkins-ci.org/redhat-stable/jenkins-ci.org.key
 sudo yum install jenkins
  
 echo -e "-- Updating packages list\n"
-yum update -y -qq
+yum update -y 
 echo -e "-- Installing Jenkins automation server\n"
-yum install jenkins -y -qq
-# NGINX ############################################################################
-echo -e "--Installing NGINX Web Server\n"
-sudo yum install nginx -y -qq
+yum install jenkins -y 
 
 # END ##########################################################################
 echo -e "-- ---------------- --"
